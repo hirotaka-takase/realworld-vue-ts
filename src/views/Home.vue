@@ -19,9 +19,12 @@
                         </li>
                     </ul>
                 </div>
-                <ArticlePreview></ArticlePreview>
-                <ArticlePreview></ArticlePreview>
-                <ArticlePreview></ArticlePreview>
+                <ArticlePreview 
+                    v-for="article in feed"
+                    :article="article"
+                    :key="article.slug"
+                >
+                </ArticlePreview>
             </div>
             <div class="col-md-3">
                 <div class="sidebar">
