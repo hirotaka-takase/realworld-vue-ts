@@ -44,3 +44,7 @@ export interface ArticlesResponse {
     articles?: (Article)[] | null;
     articlesCount: number;
 }
+
+export interface ProfileResponse {
+    profile: Profile;
+}

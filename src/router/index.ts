@@ -25,6 +25,11 @@ const routes: RouteConfig[] = [
     name: 'setiing',
     component: () => import('@/views/Setting.vue'),
   },
+  {
+    path: '/@:username',
+    name: 'profile',
+    component: () => import('@/views/Profile.vue'),
+  },
 ];
 
 const router = new VueRouter({
