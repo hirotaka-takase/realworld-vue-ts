@@ -12,6 +12,14 @@ export interface User {
     bio?: string;
     image?: string;
 }
+
+export interface UserForUpdate {
+    email?: string;
+    username?: string;
+    bio?: string;
+    password?: string;
+    image?: string;
+}
 export interface Article {
     slug: string;
     title: string;
