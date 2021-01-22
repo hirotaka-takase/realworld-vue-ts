@@ -1,12 +1,12 @@
 import axiosBase from 'axios';
-import { 
-    UserResponse, 
-    UserSubmit, 
-    User, 
-    ArticlesResponse, 
-    Profile, 
-    ProfileResponse, 
-    UserForUpdate
+import {
+    UserResponse,
+    UserSubmit,
+    User,
+    ArticlesResponse,
+    Profile,
+    ProfileResponse,
+    UserForUpdate,
 } from './models';
 
 export const axios = axiosBase.create({
