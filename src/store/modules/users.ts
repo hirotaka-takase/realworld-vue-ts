@@ -1,7 +1,7 @@
-import { VuexModule, Module, getModule, Mutation, Action } from 'vuex-module-decorators';
+import { VuexModule, Module, getModule, Mutation, Action, MutationAction } from 'vuex-module-decorators';
 import store from '@/store';
-import { Profile, User, UserSubmit } from '../models';
-import { fetchProfile, loginUser } from '../api';
+import { Profile, User, UserForUpdate, UserSubmit } from '../models';
+import { fetchProfile, fetchUser, loginUser, setJWT, updateUser } from '../api';
 
 @Module({
     namespaced: true,
@@ -23,10 +23,17 @@ class UsersModule extends VuexModule {
         return this.user || null;
     }
 
+    @MutationAction
+    async loadUser() {
+        const user = await fetchUser();
+        return { user };
+    }
+
     @Action({commit: 'setUser', rawError: true})
     public async login(userSubmit: UserSubmit) {
         try {
             const user = await loginUser(userSubmit);
+            setJWT(user.token);
             return user;
         } catch (e) {
             throw new Error('Invalid username or password');
@@ -37,6 +44,12 @@ class UsersModule extends VuexModule {
     public async loadProfile(username: string) {
         const profile = await fetchProfile(username);
         return profile;
+    }
+
+    @Action({commit: 'setUser', rawError: true})
+    public async updateselfProfile(userUpdateField: UserForUpdate) {
+        const user = await updateUser(userUpdateField);
+        return user;
     }
 }
 

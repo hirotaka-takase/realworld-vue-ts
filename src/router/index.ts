@@ -26,6 +26,11 @@ const routes: RouteConfig[] = [
     component: () => import('@/views/Setting.vue'),
   },
   {
+    path: '/editor',
+    name: 'editor',
+    component: () => import('@/views/Editor.vue'),
+  },
+  {
     path: '/@:username',
     name: 'profile',
     component: () => import('@/views/Profile.vue'),
