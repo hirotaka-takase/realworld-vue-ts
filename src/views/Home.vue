@@ -56,17 +56,17 @@ import { Article } from '@/store/models';
     name: 'Home',
     components: {
         ArticlePreview,
-    }
+    },
 })
 export default class extends Vue {
-    feed: Article[] = [];
+    public feed: Article[] = [];
 
-    async created() {
+    public async created() {
         try {
-            await articles.refreshGlobalFeed();
-            this.feed = articles.globalFeed;
-        } catch(e) {
-            console.log(e);
+            await articles.refreshFeed('global');
+            this.feed = articles.feed;
+        } catch (e) {
+          //  console.error(e);
         }
     }
 }

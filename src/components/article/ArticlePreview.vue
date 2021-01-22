@@ -25,9 +25,9 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import { Article } from '@/store/models';
 
 @Component({
-    name: 'ArticlePreview'
+    name: 'ArticlePreview',
 })
 export default class extends Vue {
-    @Prop() article?: Article;
+    @Prop() public article?: Article;
 }
 </script>

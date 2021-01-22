@@ -30,7 +30,7 @@ export interface Author {
     image: string;
     following: boolean;
 }
-  
+
 export interface UserSubmit {
     email: string;
     password: string;
@@ -43,4 +43,8 @@ export interface UserResponse {
 export interface ArticlesResponse {
     articles?: (Article)[] | null;
     articlesCount: number;
+}
+
+export interface ProfileResponse {
+    profile: Profile;
 }

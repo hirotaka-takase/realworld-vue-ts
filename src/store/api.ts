@@ -1,28 +1,33 @@
 import axiosBase from 'axios';
-import { UserResponse, UserSubmit, User, ArticlesResponse } from './models';
+import { UserResponse, UserSubmit, User, ArticlesResponse, Profile, ProfileResponse} from './models';
 
 export const axios = axiosBase.create({
     baseURL: 'https://conduit.productionready.io/api',
     headers: {
         'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest'
+        'X-Requested-With': 'XMLHttpRequest',
       },
       responseType: 'json' ,
 });
 
 export function setJWT(jwt: string) {
-    axios.defaults.headers.common['Authorization'] = `Token ${jwt}`;
+    axios.defaults.headers.common.Authorization = `Token ${jwt}`;
 }
 
 export function clearJWT(jwt: string) {
-    delete axios.defaults.headers.common['Authorization'];
+    delete axios.defaults.headers.common.Authorization;
 }
 
 export async function loginUser(user: UserSubmit): Promise<User> {
     const response = await axios.post('/users/login', {
-        user
+        user,
     });
     return (response.data as UserResponse).user;
+}
+
+export async function fetchProfile(username: string): Promise<Profile> {
+    const response = await axios.get(`/profiles/${username}`);
+    return (response.data as ProfileResponse).profile;
 }
 
 export async function getGlobalFeed(): Promise<ArticlesResponse> {

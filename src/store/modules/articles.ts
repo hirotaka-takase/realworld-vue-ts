@@ -2,6 +2,7 @@ import { Action, getModule, Module, Mutation, VuexModule } from 'vuex-module-dec
 import store from '@/store';
 import { Article } from '../models';
 import * as api from '@/store/api';
+type FeedType = 'global' | 'user';
 
 @Module({
     namespaced: true,
@@ -10,16 +11,15 @@ import * as api from '@/store/api';
     store,
 })
 class ArticlesModule extends VuexModule {
-    globalFeed: Article[] = [];
-    userFeed: Article[] = [];
+    public feed: Article[] = [];
 
     @Mutation
-    setGlobalFeed(articles: Article[]) {
-        this.globalFeed = articles;
+    public setFeed(articles: Article[]) {
+        this.feed = articles;
     }
 
-    @Action({ commit: 'setGlobalFeed' })
-    async refreshGlobalFeed() {
+    @Action({ commit: 'setFeed' })
+    public async refreshFeed(feedType: FeedType) {
         const response = await api.getGlobalFeed();
         return response.articles;
     }
