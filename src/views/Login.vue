@@ -9,10 +9,10 @@
                 <router-link to="/register">Need an account?</router-link>
             </p>
 
-        <!--  <ul class="error-messages">
-            <li>That email is already taken</li>
+            <ul class="error-messages" v-if="loginError">
+                <li>{{ loginError }}</li>
             </ul>
-        -->
+
             <form>
             <fieldset class="form-group">
                 <input v-model="email" class="form-control form-control-lg" type="text" placeholder="Email">
@@ -37,13 +37,17 @@ import users from '@/store/modules/users';
 
 @Component
 export default class Login extends Vue {
-    email = "";
-    password = "";
+    public email = '';
+    public password = '';
+    public loginError = '';
 
-    login() {
+    public login() {
        users.login({
            email: this.email,
            password: this.password,
+       }).then(() => this.$router.push('/'))
+       .catch((err) => {
+           this.loginError = err.message;
        });
     }
 }

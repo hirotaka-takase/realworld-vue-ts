@@ -14,7 +14,7 @@
           <button class="btn btn-sm btn-outline-secondary action-btn">
             <i class="ion-plus-round"></i>
             &nbsp;
-            Follow Eric Simons 
+            Follow {{ profile.username }}
           </button>
         </div>
 
@@ -92,8 +92,7 @@ import users from '@/store/modules/users';
 
 @Component
 export default class Profile extends Vue {
-  created() {
-    console.log(this.$route.params);
+  public created() {
     users.loadProfile(this.$route.params.username);
   }
 

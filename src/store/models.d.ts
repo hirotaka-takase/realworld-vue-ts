@@ -30,7 +30,7 @@ export interface Author {
     image: string;
     following: boolean;
 }
-  
+
 export interface UserSubmit {
     email: string;
     password: string;
