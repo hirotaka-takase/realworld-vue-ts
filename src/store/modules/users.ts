@@ -24,7 +24,7 @@ class UsersModule extends VuexModule {
     }
 
     @MutationAction
-    async loadUser() {
+    public async loadUser() {
         const user = await fetchUser();
         return { user };
     }

@@ -42,14 +42,14 @@ import users from '@/store//modules/users';
 
 @Component
 export default class Settings extends Vue {
-  user: Partial<User> = {};
+  public user: Partial<User> = {};
 
-  async created() {
+  public async created() {
     await users.loadUser();
     this.user = users.user || {};
   }
 
-  async updateProfile() {
+  public async updateProfile() {
     const user = await users.updateselfProfile({
       email: this.user.email,
       bio: this.user.bio,
